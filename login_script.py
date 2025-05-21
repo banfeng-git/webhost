@@ -35,6 +35,7 @@ def dingding_bot(title, content):
         print('推送成功！')
     else:
         print('推送失败！')
+    return response.json()
         
 def login_koyeb(email, password):
     with sync_playwright() as p:
@@ -84,10 +85,10 @@ if __name__ == "__main__":
         message = "WEBHOST登录状态:\n\n" + "\n".join(login_statuses)
         result = send_telegram_message(message)
         print("消息已发送到Telegram:", result)
-        result = dingding_bot("WEBHOST",message)
+        result = dingding_bot('WEBHOST',message)
         print("消息已发送到DingDing:", result)
     else:
         error_message = "没有配置任何账号"
         send_telegram_message(error_message)
-        dingding_bot("WEBHOST",error_message)
+        dingding_bot('WEBHOST',error_message)
         print(error_message)
