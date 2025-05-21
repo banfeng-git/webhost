@@ -1,6 +1,7 @@
 from playwright.sync_api import sync_playwright
 import os
 import requests
+import time
 
 def send_telegram_message(message):
     bot_token = os.environ.get('TELEGRAM_BOT_TOKEN')
