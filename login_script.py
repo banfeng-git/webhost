@@ -2,9 +2,9 @@ from playwright.sync_api import sync_playwright
 import os
 import requests
 import time
-import base64
 import hmac
 import hashlib
+import base64
 import urllib.parse
 
 def send_telegram_message(message):
@@ -22,8 +22,9 @@ def send_telegram_message(message):
 def dingding_bot(title, content):
     dd_bot_token = os.environ.get('DD_TOK')
     dd_bot_secrt = os.environ.get('DD_SEC')
-    timestamp = str(round(time.time() * 1000))  # 时间戳
+    print(dd_bot_secrt)
     secret_enc = dd_bot_secrt.encode('utf-8')
+    timestamp = str(round(time.time() * 1000))  # 时间戳
     string_to_sign = '{}\n{}'.format(timestamp, dd_bot_secrt)
     string_to_sign_enc = string_to_sign.encode('utf-8')
     hmac_code = hmac.new(secret_enc, string_to_sign_enc, digestmod=hashlib.sha256).digest()
